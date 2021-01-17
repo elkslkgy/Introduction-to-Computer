@@ -1,0 +1,192 @@
+/** Implements castle */
+class Castle {
+
+   field int x,y ; // screen location of the castle's top-left corner
+   // field int size; // length of this castle, in pixels
+
+   /** Constructs a new castle with a given location and size. */
+   constructor Castle new(int Ax, int Ay) {
+      let x = Ax;
+      let y = Ay;
+      do draw();
+      return this;
+   }
+
+   /** Disposes this castle. */
+   method void dispose() {
+      do Memory.deAlloc(this);
+      return;
+   }
+
+   /** Draw this castle x2. */
+   method void drawPixel_x2(int xx, int yy) {
+      do Screen.drawPixel(xx*2, yy*2);
+      do Screen.drawPixel(xx*2, yy*2+1);
+      do Screen.drawPixel(xx*2+1, yy*2);
+      do Screen.drawPixel(xx*2+1, yy*2+1);
+      return;
+   }
+
+   method void drawLine_x2(int xx1, int yy1, int xx2, int yy2) {
+      do Screen.drawLine(xx1*2, yy1*2, xx2*2, yy2*2);
+      do Screen.drawLine(xx1*2+1, yy1*2, xx2*2+1, yy2*2);
+      return;
+   }
+
+   method void drawRectangle_x2(int xxx1, int yyy1, int xxx2, int yyy2) {
+      do Screen.drawRectangle(xxx1*2, yyy1*2, xxx2*2, yyy2*2);
+      do Screen.drawRectangle(xxx1*2+1, yyy1*2, xxx2*2+1, yyy2*2);
+      do Screen.drawRectangle(xxx1*2, yyy1*2+1, xxx2*2, yyy2*2+1);
+      do Screen.drawRectangle(xxx1*2+1, yyy1*2+1, xxx2*2+1, yyy2*2+1);
+      return;
+   }
+   /**Draw this castle x4. */
+    method void drawPixel_x4(int ax, int ay) {
+      do drawPixel_x2(ax*2, ay*2);
+      do drawPixel_x2(ax*2, ay*2+1);
+      do drawPixel_x2(ax*2+1, ay*2);
+      do drawPixel_x2(ax*2+1, ay*2+1);
+      return;
+   }
+
+    method void drawLine_x4(int ax1, int ay1, int ax2, int ay2) {
+      do drawLine_x2(ax1*2, ay1*2, ax2*2, ay2*2);
+      do drawLine_x2(ax1*2+1, ay1*2, ax2*2+1, ay2*2);
+      return;
+   }
+
+   method void drawRectangle_x4(int axx1, int ayy1, int axx2, int ayy2) {
+      do drawRectangle_x2(axx1*2, ayy1*2, axx2*2, ayy2*2);
+      do drawRectangle_x2(axx1*2+1, ayy1*2, axx2*2+1, ayy2*2);
+      do drawRectangle_x2(axx1*2, ayy1*2+1, axx2*2, ayy2*2+1);
+      do drawRectangle_x2(axx1*2+1, ayy1*2+1, axx2*2+1, ayy2*2+1);
+      return;
+   }
+   /** Draws the castle on the screen. */
+   method void draw() {
+      do drawPixel_x4(x+16, y);
+      do drawPixel_x4(x+18, y);
+      do drawPixel_x4(x+20, y);
+      do drawPixel_x4(x+22, y);
+      do drawPixel_x4(x+24, y);
+      do drawLine_x4(x+16, y+1, x+24, y+1);
+      do drawLine_x4(x+17, y+2, x+17, y+6);
+      do drawLine_x4(x+23, y+2, x+23, y+6);
+      do drawPixel_x4(x+20, y+3);
+      do drawRectangle_x4(x+19, y+4, x+21, y+5);
+      do drawPixel_x4(x+2, y+6);
+      do drawPixel_x4(x+4, y+6);
+      do drawPixel_x4(x+6, y+6);
+      do drawLine_x4(x+2, y+7, x+6, y+7);
+      do drawLine_x4(x+3, y+8, x+3, y+12);
+      do drawLine_x4(x+5, y+8, x+5, y+12);
+      do drawPixel_x4(x+34, y+6);
+      do drawPixel_x4(x+36, y+6);
+      do drawPixel_x4(x+38, y+6);
+      do drawLine_x4(x+34, y+7, x+38, y+7);
+      do drawLine_x4(x+35, y+8, x+35, y+12);
+      do drawLine_x4(x+37, y+8, x+37, y+12);
+      do drawPixel_x4(x+13, y+7);
+      do drawPixel_x4(x+15, y+7);
+      do drawPixel_x4(x+17, y+7);
+      do drawPixel_x4(x+19, y+7);
+      do drawPixel_x4(x+21, y+7);
+      do drawPixel_x4(x+23, y+7);
+      do drawPixel_x4(x+25, y+7);
+      do drawPixel_x4(x+27, y+7);
+      do drawLine_x4(x+13, y+7, x+27, y+7);
+      do drawLine_x4(x+13, y+9, x+13, y+14);
+      do drawLine_x4(x+20, y+9, x+20, y+14);
+      do drawLine_x4(x+27, y+9, x+27, y+14);
+      do drawRectangle_x4(x+16, y+10, x+17, y+11);
+      do drawRectangle_x4(x+23, y+10, x+24, y+11);
+      do drawPixel_x4(x+1, y+13);
+      do drawPixel_x4(x+3, y+13);
+      do drawPixel_x4(x+5, y+13);
+      do drawPixel_x4(x+7, y+13);
+      do drawLine_x4(x+1, y+14, x+7, y+14);
+      do drawLine_x4(x+2, y+15, x+2, y+19);
+      do drawLine_x4(x+6, y+15, x+6, y+19);
+      do drawPixel_x4(x+4, y+16);
+      do drawPixel_x4(x+4, y+17);
+      do drawPixel_x4(x+33, y+13);
+      do drawPixel_x4(x+35, y+13);
+      do drawPixel_x4(x+37, y+13);
+      do drawPixel_x4(x+39, y+13);
+      do drawLine_x4(x+33, y+14, x+39, y+14);
+      do drawLine_x4(x+34, y+15, x+34, y+19);
+      do drawLine_x4(x+38, y+15, x+38, y+19);
+      do drawPixel_x4(x+36, y+16);
+      do drawPixel_x4(x+36, y+17);
+      do drawPixel_x4(x+9, y+14);
+      do drawPixel_x4(x+11, y+14);
+      do drawPixel_x4(x+14, y+14);
+      do drawLine_x4(x+9, y+15, x+14, y+15);
+      do drawLine_x4(x+10, y+16, x+10, y+23);
+      do drawLine_x4(x+13, y+16, x+13, y+23);
+      do drawPixel_x4(x+16, y+14);
+      do drawPixel_x4(x+18, y+14);
+      do drawPixel_x4(x+22, y+14);
+      do drawPixel_x4(x+24, y+14);
+      do drawLine_x4(x+16, y+15, x+24, y+15);
+      do drawLine_x4(x+17, y+16, x+17, y+23);
+      do drawLine_x4(x+23, y+16, x+23, y+23);
+      do drawPixel_x4(x+19, y+17);
+      do drawPixel_x4(x+19, y+18);
+      do drawPixel_x4(x+21, y+17);
+      do drawPixel_x4(x+21, y+18);
+      do drawPixel_x4(x+26, y+14);
+      do drawPixel_x4(x+29, y+14);
+      do drawPixel_x4(x+31, y+14);
+      do drawLine_x4(x+26, y+15, x+31, y+15);
+      do drawLine_x4(x+27, y+16, x+27, y+23);
+      do drawLine_x4(x+30, y+16, x+30, y+23);
+      do drawPixel_x4(x, y+20);
+      do drawPixel_x4(x+2, y+20);
+      do drawPixel_x4(x+4, y+20);
+      do drawPixel_x4(x+6, y+20);
+      do drawPixel_x4(x+8, y+20);
+      do drawLine_x4(x, y+21, x+9, y+21);
+      do drawLine_x4(x+1, y+22, x+1, y+27);
+      do drawLine_x4(x+2, y+27, x+7, y+27);
+      do drawLine_x4(x+8, y+22, x+8, y+27);
+      do drawPixel_x4(x+3, y+23);
+      do drawPixel_x4(x+3, y+24);
+      do drawPixel_x4(x+6, y+23);
+      do drawPixel_x4(x+6, y+24);
+      do drawPixel_x4(x+32, y+20);
+      do drawPixel_x4(x+34, y+20);
+      do drawPixel_x4(x+36, y+20);
+      do drawPixel_x4(x+38, y+20);
+      do drawPixel_x4(x+40, y+20);
+      do drawLine_x4(x+31, y+21, x+40, y+21);
+      do drawLine_x4(x+32, y+22, x+32, y+27);
+      do drawLine_x4(x+33, y+27, x+38, y+27);
+      do drawLine_x4(x+39, y+22, x+39, y+27);
+      do drawPixel_x4(x+34, y+23);
+      do drawPixel_x4(x+34, y+24);
+      do drawPixel_x4(x+37, y+23);
+      do drawPixel_x4(x+37, y+24);
+      do drawLine_x4(x+9, y+24, x+31, y+24);
+      do drawLine_x4(x+7, y+28, x+7, y+39);
+      do drawLine_x4(x+33, y+28, x+33, y+39);
+      do drawLine_x4(x+13, y+28, x+13, y+39);
+      do drawLine_x4(x+14, y+28, x+26, y+28);
+      do drawLine_x4(x+27, y+28, x+27, y+39);
+      do drawLine_x4(x+20, y+29, x+20, y+39);
+      do drawPixel_x4(x+18, y+34);
+      do drawPixel_x4(x+18, y+35);
+      do drawPixel_x4(x+22, y+34);
+      do drawPixel_x4(x+22, y+35);
+      return;
+   }
+
+   /** Erases the castle from the screen. */
+   // method void erase() {
+   //    do Screen.setColor(false);
+   //    do Screen.drawRectangle(x, y, x + size,  y+ size);
+   //    return;`3
+   //}
+
+    
+}

@@ -1,0 +1,65 @@
+/** Implements a Brick. */
+class Brick {
+    field int x, y; // screen location of the brick
+    field int size; // length of the brick, in pixels
+
+	
+	field char key;
+	
+	
+	constructor Brick new(int Ax, int Ay, int Asize) {
+	    let x = Ax;
+	    let y = Ay;
+	    let size = Asize;
+	    do draw();
+		
+	    return this;
+   	}
+
+   	
+   	
+
+   	
+
+   	/** Disposes this brick. */
+    method void dispose() {
+       do Memory.deAlloc(this);
+       return;
+    }
+
+    /** Draws brick on the screen. */
+   	method void draw() {
+       do Screen.setColor(true);
+       do Screen.drawRectangle(x, y, x + size, y + 4);
+       do Screen.drawRectangle(x+size-4, y, x + size, y + size);
+       do Screen.drawRectangle(x, y, x + 4, y + size);
+       do Screen.drawRectangle(x, y+size-4, x + size, y + size);
+       return;
+   }
+   method void erase() {
+       do Screen.setColor(false);
+       do Screen.drawRectangle(x, y, x + size, y + size);
+       return;
+   }
+   
+   /** Moves the brick left by 1 pixels. */
+	method void goLeft(int a) {
+		if(x < 6) {
+			do erase();
+			do Output.printInt(a);
+			let x = 150+(3*a);
+			do draw();
+			return;
+		}
+
+		do erase();
+		let x = x - 3;
+		do draw();
+		do Sys.wait(2);
+		return;
+	}
+	
+	method int get_x() {
+      return x;
+   }
+}

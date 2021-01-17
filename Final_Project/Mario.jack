@@ -1,0 +1,736 @@
+/** Implements a mario. */
+class Mario {
+
+	field int left_or_right;
+	field int x, y; // screen location of mario
+	field int sizex, sizey; // length of this mario, in pixels
+	//field int time; // time for the mario to jump
+	field int score;
+
+   /** Constructs a new mario with a given location and size. */
+   constructor Mario new(int Ax, int Ay, int Axsize, int Aysize) {
+      /* Prints some text using the standard library. */
+      let score = 0;
+      do Output.println();      // New line
+      do Output.printString("  Score:");
+      do Output.printInt(score);
+      let x = Ax;
+      let y = Ay;
+      let sizex = Axsize;
+      let sizey = Aysize;
+      let score = 0;
+      do draw();
+      return this;
+   }
+
+   /** Disposes this mario. */
+   method void dispose() {
+      do Memory.deAlloc(this);
+      return;
+   }
+
+   /** Draws the mario on the screen. */
+   method void draw() {
+      do Screen.setColor(true);
+      //do Screen.drawRectangle(x, y - sizey, x + sizex, y);
+      if ((left_or_right = 2) | (left_or_right = 3)) {
+         do Screen.drawLine(x+8, y, x+10, y);
+         do Screen.drawLine(x+7, y+1, x+13, y+1);
+         do Screen.drawLine(x+6, y+2, x+15, y+2);
+         do Screen.drawLine(x+4, y+3, x+16, y+3);
+         do Screen.drawLine(x+3, y+4, x+19, y+4);
+
+         do Screen.drawLine(x+3, y+5, x+6, y+3);
+         do Screen.drawPixel(x+17, y+5);
+
+         do Screen.drawLine(x+1, y+6, x+4, y+6);
+         do Screen.drawLine(x+6, y+6, x+7, y+6);
+         do Screen.drawLine(x+13, y+6, x+14, y+6);
+         do Screen.drawPixel(x+17, y+6);
+
+         do Screen.drawLine(x+1, y+7, x+3, y+7);
+         do Screen.drawPixel(x+7, y+7);
+         do Screen.drawLine(x+13, y+7, x+14, y+7);
+         do Screen.drawPixel(x+18, y+7);
+
+         do Screen.drawLine(x+1, y+8, x+3, y+8);
+         do Screen.drawLine(x+7, y+8, x+8, y+8);
+         do Screen.drawPixel(x+19, y+8);
+
+         do Screen.drawLine(x+1, y+9, x+3, y+9);
+         do Screen.drawLine(x+7, y+9, x+9, y+9);
+         do Screen.drawPixel(x+19, y+9);
+
+         do Screen.drawPixel(x+3, y+10);
+         do Screen.drawLine(x+7, y+10, x+9, y+10);
+         do Screen.drawLine(x+13, y+10, x+16, y+10);
+         do Screen.drawPixel(x+19, y+10);
+
+         do Screen.drawPixel(x+4, y+11);
+         do Screen.drawLine(x+8, y+11, x+9, y+11);
+         do Screen.drawLine(x+13, y+11, x+18, y+11);
+
+         do Screen.drawPixel(x+4, y+12);
+         do Screen.drawPixel(x+16, y+12);
+
+         do Screen.drawPixel(x+5, y+13);
+         do Screen.drawPixel(x+16, y+13);
+
+         do Screen.drawLine(x+6, y+14, x+15, y+14);
+
+         do Screen.drawLine(x+4, y+15, x+5, y+15);
+         do Screen.drawPixel(x+14, y+15);
+
+         do Screen.drawPixel(x+3, y+16);
+         do Screen.drawPixel(x+15, y+16);
+
+         do Screen.drawPixel(x+2, y+17);
+         do Screen.drawLine(x+6, y+17, x+8, y+17);
+         do Screen.drawPixel(x+16, y+17);
+
+         do Screen.drawPixel(x+2, y+18);
+         do Screen.drawPixel(x+6, y+18);
+         do Screen.drawPixel(x+8, y+18);
+         do Screen.drawLine(x+16, y+18, x+18, y+18);
+
+         do Screen.drawLine(x+2, y+19, x+8, y+19);
+         do Screen.drawPixel(x+16, y+19);
+         do Screen.drawPixel(x+18, y+19);
+
+         do Screen.drawLine(x+3, y+20, x+4, y+20);
+         do Screen.drawLine(x+16, y+20, x+18, y+20);
+
+         do Screen.drawLine(x+4, y+21, x+16, y+21);
+
+         do Screen.drawPixel(x+4, y+22);
+         do Screen.drawPixel(x+16, y+22);
+
+         do Screen.drawPixel(x+3, y+23);
+         do Screen.drawPixel(x+16, y+23);
+
+         do Screen.drawPixel(x+3, y+24);
+         do Screen.drawPixel(x+16, y+24);
+
+         do Screen.drawPixel(x+3, y+25);
+         do Screen.drawLine(x+9, y+25, x+10, y+25);
+         do Screen.drawLine(x+13, y+25, x+15, y+25);
+
+         do Screen.drawLine(x+3, y+26, x+4, y+26);
+         do Screen.drawLine(x+7, y+26, x+8, y+26);
+         do Screen.drawLine(x+11, y+26, x+14, y+26);
+
+
+         do Screen.drawLine(x+4, y+27, x+7, y+27);
+         do Screen.drawLine(x+13, y+27, x+16, y+27);
+
+         do Screen.drawLine(x+5, y+28, x+9, y+28);
+         do Screen.drawLine(x+13, y+28, x+18, y+28);
+
+         do Screen.drawLine(x+6, y+29, x+10, y+29);
+      }//center
+      if (left_or_right = 1) {
+         do Screen.drawLine(x+8, y, x+10, y);
+         do Screen.drawLine(x+7, y+1, x+13, y+1);
+         do Screen.drawLine(x+6, y+2, x+15, y+2);
+         do Screen.drawLine(x+4, y+3, x+16, y+3);
+         do Screen.drawLine(x+3, y+4, x+19, y+4);
+
+         do Screen.drawLine(x+3, y+5, x+6, y+3);
+         do Screen.drawPixel(x+17, y+5);
+
+         do Screen.drawLine(x+1, y+6, x+4, y+6);
+         do Screen.drawLine(x+6, y+6, x+7, y+6);
+         do Screen.drawLine(x+13, y+6, x+14, y+6);
+         do Screen.drawPixel(x+17, y+6);
+
+         do Screen.drawLine(x+1, y+7, x+3, y+7);
+         do Screen.drawPixel(x+7, y+7);
+         do Screen.drawLine(x+13, y+7, x+14, y+7);
+         do Screen.drawPixel(x+18, y+7);
+
+         do Screen.drawLine(x+1, y+8, x+3, y+8);
+         do Screen.drawLine(x+7, y+8, x+8, y+8);
+         do Screen.drawPixel(x+19, y+8);
+
+         do Screen.drawLine(x+1, y+9, x+3, y+9);
+         do Screen.drawLine(x+7, y+9, x+9, y+9);
+         do Screen.drawPixel(x+19, y+9);
+
+         do Screen.drawPixel(x+3, y+10);
+         do Screen.drawLine(x+7, y+10, x+9, y+10);
+         do Screen.drawLine(x+13, y+10, x+16, y+10);
+         do Screen.drawPixel(x+19, y+10);
+
+         do Screen.drawPixel(x+4, y+11);
+         do Screen.drawLine(x+8, y+11, x+9, y+11);
+         do Screen.drawLine(x+13, y+11, x+18, y+11);
+
+         do Screen.drawPixel(x+4, y+12);
+         do Screen.drawPixel(x+16, y+12);
+
+         do Screen.drawPixel(x+5, y+13);
+         do Screen.drawPixel(x+16, y+13);
+
+         do Screen.drawLine(x+6, y+14, x+15, y+14);
+
+         do Screen.drawPixel(x+5, y+15);
+         do Screen.drawLine(x+16, y+15, x+19, y+15);
+
+         do Screen.drawPixel(x+4, y+16);
+         do Screen.drawPixel(x+17, y+16);
+         do Screen.drawPixel(x+19, y+16);
+
+         do Screen.drawLine(x+3, y+17, x+4, y+17);
+         do Screen.drawLine(x+17, y+17, x+19, y+17);
+
+         do Screen.drawPixel(x+3, y+18);
+         do Screen.drawPixel(x+17, y+18);
+
+         do Screen.drawLine(x, y+19, x+3, y+19);
+         do Screen.drawPixel(x+16, y+19);
+
+         do Screen.drawPixel(x, y+20);
+         do Screen.drawPixel(x+2, y+20);
+         do Screen.drawPixel(x+16, y+20);
+
+         do Screen.drawLine(x, y+21, x+16, y+21);
+
+         do Screen.drawPixel(x+3, y+22);
+         do Screen.drawPixel(x+15, y+22);
+
+         do Screen.drawPixel(x+3, y+23);
+         do Screen.drawPixel(x+15, y+23);
+
+         do Screen.drawPixel(x+2, y+24);
+         do Screen.drawPixel(x+15, y+24);
+
+         do Screen.drawPixel(x+2, y+25);
+         do Screen.drawLine(x+8, y+25, x+10, y+25);
+         do Screen.drawLine(x+13, y+25, x+14, y+25);
+
+         do Screen.drawPixel(x+2, y+26);
+         do Screen.drawLine(x+6, y+26, x+8, y+26);
+         do Screen.drawPixel(x+10, y+26);
+         do Screen.drawPixel(x+12, y+26);
+
+         do Screen.drawLine(x+1, y+27, x+5, y+27);
+         do Screen.drawLine(x+10, y+27, x+11, y+27);
+
+         do Screen.drawLine(x, y+28, x+3, y+28);
+         do Screen.drawLine(x+10, y+28, x+12, y+28);
+
+         do Screen.drawLine(x, y+29, x+1, y+29);
+         do Screen.drawLine(x+10, y+29, x+14, y+29); 
+      }//left
+      if (left_or_right = 0) {
+         do Screen.drawLine(x+8, y, x+10, y);
+         do Screen.drawLine(x+7, y+1, x+13, y+1);
+         do Screen.drawLine(x+6, y+2, x+15, y+2);
+         do Screen.drawLine(x+4, y+3, x+16, y+3);
+         do Screen.drawLine(x+3, y+4, x+19, y+4);
+
+         do Screen.drawLine(x+3, y+5, x+6, y+3);
+         do Screen.drawPixel(x+17, y+5);
+
+         do Screen.drawLine(x+1, y+6, x+4, y+6);
+         do Screen.drawLine(x+6, y+6, x+7, y+6);
+         do Screen.drawLine(x+13, y+6, x+14, y+6);
+         do Screen.drawPixel(x+17, y+6);
+
+         do Screen.drawLine(x+1, y+7, x+3, y+7);
+         do Screen.drawPixel(x+7, y+7);
+         do Screen.drawLine(x+13, y+7, x+14, y+7);
+         do Screen.drawPixel(x+18, y+7);
+
+         do Screen.drawLine(x+1, y+8, x+3, y+8);
+         do Screen.drawLine(x+7, y+8, x+8, y+8);
+         do Screen.drawPixel(x+19, y+8);
+
+         do Screen.drawLine(x+1, y+9, x+3, y+9);
+         do Screen.drawLine(x+7, y+9, x+9, y+9);
+         do Screen.drawPixel(x+19, y+9);
+
+         do Screen.drawPixel(x+3, y+10);
+         do Screen.drawLine(x+7, y+10, x+9, y+10);
+         do Screen.drawLine(x+13, y+10, x+16, y+10);
+         do Screen.drawPixel(x+19, y+10);
+
+         do Screen.drawPixel(x+4, y+11);
+         do Screen.drawLine(x+8, y+11, x+9, y+11);
+         do Screen.drawLine(x+13, y+11, x+18, y+11);
+
+         do Screen.drawPixel(x+4, y+12);
+         do Screen.drawPixel(x+16, y+12);
+
+         do Screen.drawPixel(x+5, y+13);
+         do Screen.drawPixel(x+16, y+13);
+
+         do Screen.drawLine(x+6, y+14, x+15, y+14);
+
+         do Screen.drawLine(x+3, y+15, x+5, y+15);
+         do Screen.drawPixel(x+14, y+15);
+
+         do Screen.drawLine(x+2, y+16, x+3, y+16);
+         do Screen.drawPixel(x+14, y+16);
+
+         do Screen.drawLine(x, y+17, x+2, y+17);
+         do Screen.drawLine(x+14, y+17, x+15, y+17);
+
+         do Screen.drawPixel(x, y+18);
+         do Screen.drawLine(x+2, y+18, x+3, y+18);
+         do Screen.drawLine(x+15, y+18, x+19, y+18);
+
+         do Screen.drawLine(x, y+19, x+2, y+19);
+         do Screen.drawPixel(x+4, y+19);
+         do Screen.drawPixel(x+17, y+19);
+         do Screen.drawPixel(x+19, y+19);
+
+         do Screen.drawPixel(x+4, y+20);
+         do Screen.drawLine(x+16, y+20, x+19, y+20);
+
+         do Screen.drawLine(x+4, y+21, x+16, y+21);
+
+         do Screen.drawPixel(x+3, y+22);
+         do Screen.drawPixel(x+15, y+22);
+
+         do Screen.drawPixel(x+3, y+23);
+         do Screen.drawPixel(x+15, y+23);
+
+         do Screen.drawPixel(x+2, y+24);
+         do Screen.drawPixel(x+14, y+24);
+
+         do Screen.drawPixel(x+2, y+25);
+         do Screen.drawLine(x+8, y+25, x+10, y+25);
+         do Screen.drawPixel(x+14, y+25);
+
+         do Screen.drawPixel(x+1, y+26);
+         do Screen.drawLine(x+4, y+26, x+8, y+26);
+         do Screen.drawLine(x+10, y+26, x+11, y+26);
+         do Screen.drawLine(x+14, y+26, x+15, y+26);
+         do Screen.drawPixel(x+18, y+26);
+
+         do Screen.drawLine(x+1, y+27, x+4, y+27);
+         do Screen.drawLine(x+11, y+27, x+12, y+27);
+         do Screen.drawPixel(x+15, y+27);
+         do Screen.drawLine(x+17, y+27, x+18, y+27);
+
+         do Screen.drawLine(x+2, y+28, x+4, y+28);
+         do Screen.drawLine(x+12, y+28, x+18, y+28);
+
+         do Screen.drawLine(x+2, y+29, x+6, y+29);
+         do Screen.drawLine(x+14, y+29, x+17, y+29);
+      }//right
+	  return;
+   }
+
+   /** Erases the mario from the screen. */
+   method void erase() {
+      do Screen.setColor(false);
+      //do Screen.drawRectangle(x, y - sizey, x + sizex, y);
+      if ((left_or_right = 2) | (left_or_right = 3))
+      {
+         do Screen.drawLine(x+8, y, x+10, y);
+         do Screen.drawLine(x+7, y+1, x+13, y+1);
+         do Screen.drawLine(x+6, y+2, x+15, y+2);
+         do Screen.drawLine(x+4, y+3, x+16, y+3);
+         do Screen.drawLine(x+3, y+4, x+19, y+4);
+
+         do Screen.drawLine(x+3, y+5, x+6, y+3);
+         do Screen.drawPixel(x+17, y+5);
+
+         do Screen.drawLine(x+1, y+6, x+4, y+6);
+         do Screen.drawLine(x+6, y+6, x+7, y+6);
+         do Screen.drawLine(x+13, y+6, x+14, y+6);
+         do Screen.drawPixel(x+17, y+6);
+
+         do Screen.drawLine(x+1, y+7, x+3, y+7);
+         do Screen.drawPixel(x+7, y+7);
+         do Screen.drawLine(x+13, y+7, x+14, y+7);
+         do Screen.drawPixel(x+18, y+7);
+
+         do Screen.drawLine(x+1, y+8, x+3, y+8);
+         do Screen.drawLine(x+7, y+8, x+8, y+8);
+         do Screen.drawPixel(x+19, y+8);
+
+         do Screen.drawLine(x+1, y+9, x+3, y+9);
+         do Screen.drawLine(x+7, y+9, x+9, y+9);
+         do Screen.drawPixel(x+19, y+9);
+
+         do Screen.drawPixel(x+3, y+10);
+         do Screen.drawLine(x+7, y+10, x+9, y+10);
+         do Screen.drawLine(x+13, y+10, x+16, y+10);
+         do Screen.drawPixel(x+19, y+10);
+
+         do Screen.drawPixel(x+4, y+11);
+         do Screen.drawLine(x+8, y+11, x+9, y+11);
+         do Screen.drawLine(x+13, y+11, x+18, y+11);
+
+         do Screen.drawPixel(x+4, y+12);
+         do Screen.drawPixel(x+16, y+12);
+
+         do Screen.drawPixel(x+5, y+13);
+         do Screen.drawPixel(x+16, y+13);
+
+         do Screen.drawLine(x+6, y+14, x+15, y+14);
+
+         do Screen.drawLine(x+4, y+15, x+5, y+15);
+         do Screen.drawPixel(x+14, y+15);
+
+         do Screen.drawPixel(x+3, y+16);
+         do Screen.drawPixel(x+15, y+16);
+
+         do Screen.drawPixel(x+2, y+17);
+         do Screen.drawLine(x+6, y+17, x+8, y+17);
+         do Screen.drawPixel(x+16, y+17);
+
+         do Screen.drawPixel(x+2, y+18);
+         do Screen.drawPixel(x+6, y+18);
+         do Screen.drawPixel(x+8, y+18);
+         do Screen.drawLine(x+16, y+18, x+18, y+18);
+
+         do Screen.drawLine(x+2, y+19, x+8, y+19);
+         do Screen.drawPixel(x+16, y+19);
+         do Screen.drawPixel(x+18, y+19);
+
+         do Screen.drawLine(x+3, y+20, x+4, y+20);
+         do Screen.drawLine(x+16, y+20, x+18, y+20);
+
+         do Screen.drawLine(x+4, y+21, x+16, y+21);
+
+         do Screen.drawPixel(x+4, y+22);
+         do Screen.drawPixel(x+16, y+22);
+
+         do Screen.drawPixel(x+3, y+23);
+         do Screen.drawPixel(x+16, y+23);
+
+         do Screen.drawPixel(x+3, y+24);
+         do Screen.drawPixel(x+16, y+24);
+
+         do Screen.drawPixel(x+3, y+25);
+         do Screen.drawLine(x+9, y+25, x+10, y+25);
+         do Screen.drawLine(x+13, y+25, x+15, y+25);
+
+         do Screen.drawLine(x+3, y+26, x+4, y+26);
+         do Screen.drawLine(x+7, y+26, x+8, y+26);
+         do Screen.drawLine(x+11, y+26, x+14, y+26);
+
+
+         do Screen.drawLine(x+4, y+27, x+7, y+27);
+         do Screen.drawLine(x+13, y+27, x+16, y+27);
+
+         do Screen.drawLine(x+5, y+28, x+9, y+28);
+         do Screen.drawLine(x+13, y+28, x+18, y+28);
+
+         do Screen.drawLine(x+6, y+29, x+10, y+29);
+      }//center
+      if (left_or_right = 1)
+      {
+         do Screen.drawLine(x+8, y, x+10, y);
+         do Screen.drawLine(x+7, y+1, x+13, y+1);
+         do Screen.drawLine(x+6, y+2, x+15, y+2);
+         do Screen.drawLine(x+4, y+3, x+16, y+3);
+         do Screen.drawLine(x+3, y+4, x+19, y+4);
+
+         do Screen.drawLine(x+3, y+5, x+6, y+3);
+         do Screen.drawPixel(x+17, y+5);
+
+         do Screen.drawLine(x+1, y+6, x+4, y+6);
+         do Screen.drawLine(x+6, y+6, x+7, y+6);
+         do Screen.drawLine(x+13, y+6, x+14, y+6);
+         do Screen.drawPixel(x+17, y+6);
+
+         do Screen.drawLine(x+1, y+7, x+3, y+7);
+         do Screen.drawPixel(x+7, y+7);
+         do Screen.drawLine(x+13, y+7, x+14, y+7);
+         do Screen.drawPixel(x+18, y+7);
+
+         do Screen.drawLine(x+1, y+8, x+3, y+8);
+         do Screen.drawLine(x+7, y+8, x+8, y+8);
+         do Screen.drawPixel(x+19, y+8);
+
+         do Screen.drawLine(x+1, y+9, x+3, y+9);
+         do Screen.drawLine(x+7, y+9, x+9, y+9);
+         do Screen.drawPixel(x+19, y+9);
+
+         do Screen.drawPixel(x+3, y+10);
+         do Screen.drawLine(x+7, y+10, x+9, y+10);
+         do Screen.drawLine(x+13, y+10, x+16, y+10);
+         do Screen.drawPixel(x+19, y+10);
+
+         do Screen.drawPixel(x+4, y+11);
+         do Screen.drawLine(x+8, y+11, x+9, y+11);
+         do Screen.drawLine(x+13, y+11, x+18, y+11);
+
+         do Screen.drawPixel(x+4, y+12);
+         do Screen.drawPixel(x+16, y+12);
+
+         do Screen.drawPixel(x+5, y+13);
+         do Screen.drawPixel(x+16, y+13);
+
+         do Screen.drawLine(x+6, y+14, x+15, y+14);
+
+         do Screen.drawPixel(x+5, y+15);
+         do Screen.drawLine(x+16, y+15, x+19, y+15);
+
+         do Screen.drawPixel(x+4, y+16);
+         do Screen.drawPixel(x+17, y+16);
+         do Screen.drawPixel(x+19, y+16);
+
+         do Screen.drawLine(x+3, y+17, x+4, y+17);
+         do Screen.drawLine(x+17, y+17, x+19, y+17);
+
+         do Screen.drawPixel(x+3, y+18);
+         do Screen.drawPixel(x+17, y+18);
+
+         do Screen.drawLine(x, y+19, x+3, y+19);
+         do Screen.drawPixel(x+16, y+19);
+
+         do Screen.drawPixel(x, y+20);
+         do Screen.drawPixel(x+2, y+20);
+         do Screen.drawPixel(x+16, y+20);
+
+         do Screen.drawLine(x, y+21, x+16, y+21);
+
+         do Screen.drawPixel(x+3, y+22);
+         do Screen.drawPixel(x+15, y+22);
+
+         do Screen.drawPixel(x+3, y+23);
+         do Screen.drawPixel(x+15, y+23);
+
+         do Screen.drawPixel(x+2, y+24);
+         do Screen.drawPixel(x+15, y+24);
+
+         do Screen.drawPixel(x+2, y+25);
+         do Screen.drawLine(x+8, y+25, x+10, y+25);
+         do Screen.drawLine(x+13, y+25, x+14, y+25);
+
+         do Screen.drawPixel(x+2, y+26);
+         do Screen.drawLine(x+6, y+26, x+8, y+26);
+         do Screen.drawPixel(x+10, y+26);
+         do Screen.drawPixel(x+12, y+26);
+
+         do Screen.drawLine(x+1, y+27, x+5, y+27);
+         do Screen.drawLine(x+10, y+27, x+11, y+27);
+
+         do Screen.drawLine(x, y+28, x+3, y+28);
+         do Screen.drawLine(x+10, y+28, x+12, y+28);
+
+         do Screen.drawLine(x, y+29, x+1, y+29);
+         do Screen.drawLine(x+10, y+29, x+14, y+29); 
+      }//left
+      if (left_or_right = 0)
+      {
+         do Screen.drawLine(x+8, y, x+10, y);
+         do Screen.drawLine(x+7, y+1, x+13, y+1);
+         do Screen.drawLine(x+6, y+2, x+15, y+2);
+         do Screen.drawLine(x+4, y+3, x+16, y+3);
+         do Screen.drawLine(x+3, y+4, x+19, y+4);
+
+         do Screen.drawLine(x+3, y+5, x+6, y+3);
+         do Screen.drawPixel(x+17, y+5);
+
+         do Screen.drawLine(x+1, y+6, x+4, y+6);
+         do Screen.drawLine(x+6, y+6, x+7, y+6);
+         do Screen.drawLine(x+13, y+6, x+14, y+6);
+         do Screen.drawPixel(x+17, y+6);
+
+         do Screen.drawLine(x+1, y+7, x+3, y+7);
+         do Screen.drawPixel(x+7, y+7);
+         do Screen.drawLine(x+13, y+7, x+14, y+7);
+         do Screen.drawPixel(x+18, y+7);
+
+         do Screen.drawLine(x+1, y+8, x+3, y+8);
+         do Screen.drawLine(x+7, y+8, x+8, y+8);
+         do Screen.drawPixel(x+19, y+8);
+
+         do Screen.drawLine(x+1, y+9, x+3, y+9);
+         do Screen.drawLine(x+7, y+9, x+9, y+9);
+         do Screen.drawPixel(x+19, y+9);
+
+         do Screen.drawPixel(x+3, y+10);
+         do Screen.drawLine(x+7, y+10, x+9, y+10);
+         do Screen.drawLine(x+13, y+10, x+16, y+10);
+         do Screen.drawPixel(x+19, y+10);
+
+         do Screen.drawPixel(x+4, y+11);
+         do Screen.drawLine(x+8, y+11, x+9, y+11);
+         do Screen.drawLine(x+13, y+11, x+18, y+11);
+
+         do Screen.drawPixel(x+4, y+12);
+         do Screen.drawPixel(x+16, y+12);
+
+         do Screen.drawPixel(x+5, y+13);
+         do Screen.drawPixel(x+16, y+13);
+
+         do Screen.drawLine(x+6, y+14, x+15, y+14);
+
+         do Screen.drawLine(x+3, y+15, x+5, y+15);
+         do Screen.drawPixel(x+14, y+15);
+
+         do Screen.drawLine(x+2, y+16, x+3, y+16);
+         do Screen.drawPixel(x+14, y+16);
+
+         do Screen.drawLine(x, y+17, x+2, y+17);
+         do Screen.drawLine(x+14, y+17, x+15, y+17);
+
+         do Screen.drawPixel(x, y+18);
+         do Screen.drawLine(x+2, y+18, x+3, y+18);
+         do Screen.drawLine(x+15, y+18, x+19, y+18);
+
+         do Screen.drawLine(x, y+19, x+2, y+19);
+         do Screen.drawPixel(x+4, y+19);
+         do Screen.drawPixel(x+17, y+19);
+         do Screen.drawPixel(x+19, y+19);
+
+         do Screen.drawPixel(x+4, y+20);
+         do Screen.drawLine(x+16, y+20, x+19, y+20);
+
+         do Screen.drawLine(x+4, y+21, x+16, y+21);
+
+         do Screen.drawPixel(x+3, y+22);
+         do Screen.drawPixel(x+15, y+22);
+
+         do Screen.drawPixel(x+3, y+23);
+         do Screen.drawPixel(x+15, y+23);
+
+         do Screen.drawPixel(x+2, y+24);
+         do Screen.drawPixel(x+14, y+24);
+
+         do Screen.drawPixel(x+2, y+25);
+         do Screen.drawLine(x+8, y+25, x+10, y+25);
+         do Screen.drawPixel(x+14, y+25);
+
+         do Screen.drawPixel(x+1, y+26);
+         do Screen.drawLine(x+4, y+26, x+8, y+26);
+         do Screen.drawLine(x+10, y+26, x+11, y+26);
+         do Screen.drawLine(x+14, y+26, x+15, y+26);
+         do Screen.drawPixel(x+18, y+26);
+
+         do Screen.drawLine(x+1, y+27, x+4, y+27);
+         do Screen.drawLine(x+11, y+27, x+12, y+27);
+         do Screen.drawPixel(x+15, y+27);
+         do Screen.drawLine(x+17, y+27, x+18, y+27);
+
+         do Screen.drawLine(x+2, y+28, x+4, y+28);
+         do Screen.drawLine(x+12, y+28, x+18, y+28);
+
+         do Screen.drawLine(x+2, y+29, x+6, y+29);
+         do Screen.drawLine(x+14, y+29, x+17, y+29);
+      }//right
+      return;
+   }
+   
+   method void walk(int left_or_right) {
+      do erase();
+      do change();
+      do draw();
+      do Sys.wait(2);
+
+      return;
+   }
+
+
+    /** Increments the mario size by 2 pixels. */
+   method void incSize() {
+      // if (((y + size) < 254) & ((x + size) < 510)) {
+      //    do erase();
+      //    let size = size + 2;
+      //    do draw();
+      // }
+      var int newsizex;
+      var int newsizey;
+      let newsizex = sizex + 6 + 1;
+      let newsizey = sizey + 9 + 1;
+      if (sizex < 30) {
+         while (sizex < newsizex) {
+            do erase();
+            // let y = y - 2;
+            let sizex = sizex + 2;
+            let sizey = sizey + 3;
+            do draw();
+         }
+      }
+      
+
+      return;
+   }
+
+   /** Decrements the mario size by 2 pixels. */
+   method void decSize() {
+      // if (size > 2) {
+      //    do erase();
+      //    let size = size - 2;
+      //    do draw();
+      // }
+      var int newsizex;
+      var int newsizey;
+      let newsizex = sizex - 6 - 1;
+      let newsizey = sizey - 9 - 1;
+	  
+      if (sizex > 20) {
+         while (sizex > newsizex) {
+            do erase();
+            // let y = y + 2;
+            let sizex = sizex - 2;
+            let sizey = sizey - 3;
+            do draw();
+         }
+      }
+
+      return;
+   }
+
+   method void change() {
+      if (left_or_right = 2) {   let left_or_right = 1;  }
+      else {
+         if (left_or_right = 1) {   let left_or_right = 3;  }
+         else {
+            if (left_or_right = 3) {   let left_or_right = 0;  }
+            else {
+               if (left_or_right = 0) {   let left_or_right = 2;  }
+            }
+         }
+      }
+      return;
+   }
+   // /** Moves the mario left by 2 pixels. */
+   // method void moveLeft() {
+   //    if (x > 1) {
+   //       do walk();
+   //       do erase();
+   //       let x = x - 1;
+   //       do draw();   
+   //    }
+   //    return;
+   // }
+
+   // * Moves the mario right by 2 pixels. 
+   // method void moveRight() {
+   //    if ((x + sizex) < 255) {
+   //       do walk();
+   //       do erase();
+   //       let x = x + 1;
+   //       do draw();
+   //    }
+   //    return;
+   // }
+   method int get_y() {
+      return y;
+   }
+   method void up() {
+      do erase();
+      let y = y - 5;
+      do draw();
+      do Sys.wait(2);
+      return;
+   }
+   method void down() {
+      do erase();
+      let y = y + 5;
+      do draw();
+      do Sys.wait(2);
+      return;
+   }
+    /** Runs the game: handles the user's inputs and moves the mario accordingly */
+
+}

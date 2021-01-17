@@ -1,0 +1,160 @@
+/** Implements Bird. */
+class Bird {
+    field int x, y; // screen location of the brick
+    // field int size; // length of the bird, in pixels
+    // size is 20
+    field int ud;
+	constructor Bird new(int Ax, int Ay) {
+	    let x = Ax;
+	    let y = Ay;
+        let ud = 0;
+	    do draw();
+	    return this; 
+   	}
+
+
+   	/** Disposes this brick. */
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    /** Draws brick on the screen. */
+   	method void draw() {
+        do Screen.setColor(true);
+
+        do Screen.drawPixel(x+19, y);
+
+        do Screen.drawLine(x+17, y+1, x+19, y+1);
+
+        do Screen.drawLine(x+16, y+2, x+19, y+2);
+
+        do Screen.drawLine(x+15, y+3, x+19, y+3);
+
+        do Screen.drawPixel(x+4, y+4);
+        do Screen.drawLine(x+14, y+4, x+18, y+4);
+
+        do Screen.drawLine(x+3, y+5, x+4, y+3);
+        do Screen.drawLine(x+12, y+5, x+18, y+3);
+
+        do Screen.drawLine(x+2, y+6, x+5, y+6);
+        do Screen.drawLine(x+11, y+6, x+17, y+6);
+
+        do Screen.drawLine(x+1, y+7, x+2, y+7);
+        do Screen.drawLine(x+4, y+7, x+5, y+7);
+        do Screen.drawLine(x+10, y+7, x+17, y+7);
+
+        do Screen.drawLine(x, y+8, x+6, y+8);
+        do Screen.drawLine(x+9, y+8, x+16, y+8);
+
+        do Screen.drawLine(x+3, y+9, x+14, y+9);
+        
+        do Screen.drawLine(x+4, y+10, x+12, y+10);
+
+        do Screen.drawLine(x+4, y+11, x+19, y+11);
+
+        do Screen.drawLine(x+5, y+12, x+15, y+12);
+
+        do Screen.drawLine(x+6, y+13, x+16, y+13);
+
+        do Screen.drawLine(x+6, y+14, x+17, y+14);
+
+        do Screen.drawLine(x+8, y+15, x+13, y+15);
+
+
+        do Screen.drawPixel(x+9, y+16);
+        do Screen.drawPixel(x+12, y+16);
+
+        do Screen.drawPixel(x+9, y+17);
+        do Screen.drawLine(x+12, y+17, x+15, y+17);
+
+        do Screen.drawLine(x+9, y+18, x+11, y+18);
+        do Screen.drawPixel(x+14, y+18);
+
+        do Screen.drawPixel(x+10, y+19);
+
+        return;
+   }
+   method void erase() {
+        do Screen.setColor(false);
+
+        do Screen.drawPixel(x+19, y);
+
+        do Screen.drawLine(x+17, y+1, x+19, y+1);
+
+        do Screen.drawLine(x+16, y+2, x+19, y+2);
+
+        do Screen.drawLine(x+15, y+3, x+19, y+3);
+
+        do Screen.drawPixel(x+4, y+4);
+        do Screen.drawLine(x+14, y+4, x+18, y+4);
+
+        do Screen.drawLine(x+3, y+5, x+4, y+3);
+        do Screen.drawLine(x+12, y+5, x+18, y+3);
+
+        do Screen.drawLine(x+2, y+6, x+5, y+6);
+        do Screen.drawLine(x+11, y+6, x+17, y+6);
+
+        do Screen.drawLine(x+1, y+7, x+2, y+7);
+        do Screen.drawLine(x+4, y+7, x+5, y+7);
+        do Screen.drawLine(x+10, y+7, x+17, y+7);
+
+        do Screen.drawLine(x, y+8, x+6, y+8);
+        do Screen.drawLine(x+9, y+8, x+16, y+8);
+
+        do Screen.drawLine(x+3, y+9, x+14, y+9);
+        
+        do Screen.drawLine(x+4, y+10, x+12, y+10);
+
+        do Screen.drawLine(x+4, y+11, x+19, y+11);
+
+        do Screen.drawLine(x+5, y+12, x+15, y+12);
+
+        do Screen.drawLine(x+6, y+13, x+16, y+13);
+
+        do Screen.drawLine(x+6, y+14, x+17, y+14);
+
+        do Screen.drawLine(x+8, y+15, x+13, y+15);
+
+
+        do Screen.drawPixel(x+9, y+16);
+        do Screen.drawPixel(x+12, y+16);
+
+        do Screen.drawPixel(x+9, y+17);
+        do Screen.drawLine(x+12, y+17, x+15, y+17);
+
+        do Screen.drawLine(x+9, y+18, x+11, y+18);
+        do Screen.drawPixel(x+14, y+18);
+
+        do Screen.drawPixel(x+10, y+19);
+
+        return;
+   }
+   method void goLeft() {
+        if(x < 6) {
+            do erase();
+            let x = 450;
+            do draw();
+            return;
+        }
+        if (y < 50) {
+            let ud = 1;
+        }
+        if (y > 90) {
+            let ud = 0;            
+        }
+
+        do erase();
+        let x = x - 2;
+        if (ud = 0) {
+            let y = y - 2;
+        }
+        if (ud = 1) {
+            let y = y + 2;
+        }
+        do draw();
+        do Sys.wait(2);
+        return;
+    }
+
+}

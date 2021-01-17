@@ -1,0 +1,260 @@
+/**
+ * Implements the Mario game.
+ * This simple game allows the user to move a black mario around
+ * the screen, and change the mario's size during the movement.
+ * When the game starts, a mario of 30 by 30 pixels is shown at the
+ * top-left corner of the screen. The user controls the mario as follows.
+ * The 4 arrow keys are used to move the mario up, down, left, and right.
+ * The 'z' and 'x' keys are used, respectively, to decrement and increment
+ * the mario's size. The 'q' key is used to quit the game.
+ */
+
+class MarioGame {
+	field Mario mario; // the mario of this game
+	field int direction; // the mario's current direction: 
+						// 0=none, 1=up, 2=down, 3=left, 4=right
+	field Brick brick1;
+	field Brick brick2;
+	field Brick brick3;
+	field int jump_or_not;
+	field int random_num;
+	// field Brick brick4;
+	// field Brick brick5;
+	// field Brick brick6;
+	// field Brick brick7;
+	// field Brick brick8;
+	
+	field Castle castle;
+	
+	field Bird bird1;
+	field Bird bird2;
+	field Bird bird3;
+	field Bird bird4;
+	field Bird bird5;
+
+	field Mushroom mushroom1;
+	field Mushroom mushroom2;
+	
+	field Backround3 background;
+   
+	/** Constructs a new Mario Run Game. */
+	constructor MarioGame new() {
+	
+		// Creates a 30 by 30 pixels mario and positions it at the top-left of the screen.
+		
+		let mario = Mario.new(70, 200, 20, 30);
+
+		let bird1 = Bird.new(475, 90);
+		let bird2 = Bird.new(380, 80);
+		let bird3 = Bird.new(285, 70);
+		let bird4 = Bird.new(190, 60);
+		let bird5 = Bird.new(95, 50);
+
+		let brick1 = Brick.new(250, 200, 29);
+		let brick3 = Brick.new(450, 200, 29);
+		
+
+		do Screen.drawRectangle(0, 230, 511, 233); //it is the floor.
+		
+		
+
+		
+		return this;
+	}
+
+	/** Disposes this game. */
+	method void dispose()
+	{
+		do mario.dispose();
+
+		do brick1.dispose();
+
+		do brick3.dispose();
+
+
+		do bird1.dispose();
+		do bird2.dispose();
+		do bird3.dispose();
+		do bird4.dispose();
+		do bird5.dispose();
+
+
+		// do mushroom1.dispose();
+		// do mushroom2.dispose();
+
+		do Memory.deAlloc(this);
+
+		return;
+	}
+	method int mod_10(int a) {
+   		return a - ((a/10)*10);
+   	}
+   	
+	/** Runs the game: handles the user's inputs and moves the mario accordingly */
+	method void run() {
+		var char key;  // the key currently pressed by the user
+		var boolean exit;
+		var int time;
+		var int t;
+		var int y_of_mario;
+		var int win_or_not;
+		var int x1;
+		var int x2;
+
+		let exit = false;
+		let time = 0;
+		let t = 0;
+		let jump_or_not = 0;
+		let y_of_mario = 200;
+		let win_or_not = 0;
+		let x1 = 250;
+		let x2 = 450;
+
+		while (~exit) {
+			if(mod_10(time) = 1) {
+				let random_num = 61;
+			}
+			if(mod_10(time) = 0) {
+				let random_num = 93;
+			}
+			if(mod_10(time) = 2) {
+				let random_num = 44;
+			}
+			if(mod_10(time) = 3) {
+				let random_num = 33;
+			}
+			if(mod_10(time) = 4) {
+				let random_num = 77;
+			}
+			if(mod_10(time) = 5) {
+				let random_num = 10;
+			}
+			if(mod_10(time) = 6) {
+				let random_num = 87;
+			}
+			if(mod_10(time) = 7) {
+				let random_num = 68;
+			}
+			if(mod_10(time) = 8) {
+				let random_num = 29;
+			}
+			if(mod_10(time) = 9) {
+				let random_num = 52;
+			}
+			let y_of_mario = mario.get_y();
+			let x1 = brick1.get_x();
+			let x2 = brick3.get_x();
+			let key = Keyboard.keyPressed();
+			if (key = 131){
+				if (jump_or_not = 0) {
+					let jump_or_not = 1;
+				}
+			}
+			if (key = 133){
+				if (jump_or_not = 1) {
+					let jump_or_not = 2;
+				}
+			}//up key
+			if (key = 81) {
+				let exit = true;
+			}// q key
+			if(time < 500)
+			{
+				if (jump_or_not = 0) {
+					do bird1.goLeft();
+					do bird2.goLeft();
+					do bird3.goLeft();
+					do bird4.goLeft();
+					do bird5.goLeft();
+					do mario.walk();
+					do brick1.goLeft(random_num);
+					
+					do brick3.goLeft(random_num);
+				}
+				if (jump_or_not = 1) {
+					do bird1.goLeft();
+					do bird2.goLeft();
+					do bird3.goLeft();
+					do bird4.goLeft();
+					do bird5.goLeft();
+					do mario.up();
+					do brick1.goLeft(random_num);
+					
+					do brick3.goLeft(random_num);
+					if (y_of_mario < 100) {
+						let jump_or_not = 2;
+					}
+				}
+				if (jump_or_not = 2) {
+					do bird1.goLeft();
+					do bird2.goLeft();
+					do bird3.goLeft();
+					do bird4.goLeft();
+					do bird5.goLeft();
+					do mario.down();
+					do brick1.goLeft(random_num);
+					
+					do brick3.goLeft(random_num);
+					if (y_of_mario > 190) {
+						let jump_or_not = 0;
+					}
+				}	
+				if (x1 < 92) {
+					if (x1 > 40) {
+						if(y_of_mario > 169) {
+							let exit = true;
+						}
+					}
+				}
+				if (x2 < 92) {
+					if (x2 > 40) {
+						if(y_of_mario > 169) {
+							let exit = true;
+						}
+					}
+				}
+			}
+			
+			
+			if (time > 500) { 
+				let win_or_not = 1;
+				let castle = Castle.new(75, 18);
+				do brick1.erase();
+				do brick3.erase();
+
+			}
+
+
+			do Sys.wait(50);
+			let t = t + 1;
+			if (t = 5) {
+				let time = time + 1;
+				let t = 0;
+				// do Output.println(); 
+				// do Output.printInt(time);
+				// do Output.printString("  ");
+				// do Output.printInt(mod_10(time));
+			}
+		} 
+		if (win_or_not = 1) {
+			do Output.println();      // New line
+			do Output.printString("    You are win");
+		}
+		if (win_or_not = 0) {
+			do Output.println();      // New line
+			do Output.printString("    You are lose");
+			// do Output.println(); 
+			// do Output.printInt(y_of_mario);
+			// do Output.println(); 
+			// do Output.printInt(x1);
+			// do Output.println(); 
+			// do Output.printInt(x2);
+		}
+		
+		
+	return;
+	}
+}
+
+
+
